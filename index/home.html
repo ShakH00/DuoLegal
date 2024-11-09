@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>DuoLegal</title>
+        <link rel="stylesheet" href="../static/index.css">
+        <link rel="stylesheet" href="../static/all.css">
+        <link rel="shortcut icon" type="image/png" href="../static/logo.png">
+    </head>
 
-</body>
+    <body>
+        {% if username %}
+        <!--NAVBAR-->
+        <div class="navbar">
+            <a class="logo" href="#">DuoLegal</a>
+            <ul class="nav">
+                <li><a href="#main">Home</a></li>
+                <li><a href="claims.html">Claims</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="banner-area" id="main">
+            <img src="../static/default.jpeg" class="banner-img" alt="">
+            <div class="banner-text">HOME PAGE</div>
+        </div>
+        {% else %}
+            <p>You are not logged in.</p>
+        {% endif %}
+    </body>
 </html>
