@@ -1,0 +1,14 @@
+/*
+    CSS file for styles used in ALL pages
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700);
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Roboto, sans-serif;
+    margin: 0;
+}

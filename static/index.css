@@ -1,0 +1,106 @@
+/*
+    CSS file for styles used in index (main) page
+*/
+
+/*NAVBAR*/
+.navbar {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #262626;
+    color: #fff;
+    width: 100%;
+    height: 70px;
+    z-index: 1;
+}
+
+.nav {
+    display: flex;
+    justify-content: right;
+    list-style: none;
+    margin-right: 15%;
+}
+
+.logo {
+    flex: 1 1 auto;
+    margin-left: 10%;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 35px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav a {
+    margin: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: red;
+}
+
+.banner-area {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+}
+
+.banner-img {
+    width: 100%;
+}
+
+.banner-text {
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 35%;
+}
+
+.about-area, .services-area, .contact-area {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    height: 700px;
+}
+
+.text-part {
+    width: 65%;
+    height: 80%;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+p {
+    font-size: 24px;
+    line-height: 50px;
+}
+
+.about-area {
+    background: #fefefe;
+}
+
+.services-area {
+    background-color: #262626;
+    color: #fff;
+}
+
+.contact-area {
+    background: #fefefe;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}

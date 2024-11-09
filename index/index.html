@@ -1,68 +1,72 @@
-<HTML>
-    <HEAD>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
         <meta charset="UTF-8">
-        <title> PSXEarn</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
-	<link rel="shortcut icon" type="image/png" href="logo.png">
-    </HEAD>
-    <BODY>
+        <title>DuoLegal</title>
+        <link rel="stylesheet" href="../static/index.css">
+        <link rel="stylesheet" href="../static/all.css">
+        <link rel="shortcut icon" type="image/png" href="../static/logo.png">
+    </head>
+
+    <body>
+        <!--NAVBAR-->
         <div class="navbar">
-            <a class="logo" href="#">PSXEarn</a>
+            <a class="logo" href="#">DuoLegal</a>
             <ul class="nav">
-                <li><a href="#main">Main Page</a></li>
-                <li><a href="#earn">Earn</a></li>
-                <li><a href="#withdraw">Withdraw</a></li>
-                <li><a href="#contact">Support</a></li>
+                <li><a href="#main">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Sign up</a></li>
             </ul>
-
         </div>
-	<section class="banner-area" id="main">
-	<div class="banner-text" id="main"> Earn PSX items by completing tasks!</div>
 
-        </section>
+        <div class="banner-area" id="main">
+            <img src="../static/default.jpeg" class="banner-img" alt="">
+            <div class="banner-text">INSERT A TAG LINE</div>
+        </div>
 
-        <section class="about-area" id="earn">
+        <div class="about-area" id="about">
 
             <div class="text-part">
                 <h1>
                     HOW THIS WORKS
                 </h1>
                 <h2>
-                PSXEarn's mission is to giveaway rewards to as many users as possible!
-                 </h2>
+                    PSXEarn's mission is to giveaway rewards to as many users as possible!
+                </h2>
                 <p>
-                1. Connect your discord user to our database!
-		2. Perform tasks, join giveaways, get coins.
-		3. Join our discord server to redeem your coins for items and gems!
+                    1. Connect your discord user to our database!
+                    2. Perform tasks, join giveaways, get coins.
+                    3. Join our discord server to redeem your coins for items and gems!
                 </p>
             </div>
-        </section>
-        <section class="services-area" id="withdraw">
+        </div>
+        <div class="services-area" id="withdraw">
             <div class="text-part">
                 <h1>
                     How do I claim my items?
                 </h1>
                 <p>
-                We have very simple steps for you to follow to redeem your coins and claim huges or gems!
-		1. Join our discord server.
-		2. Use our bot to exchange your coins for items.
-		3. Create a claim ticket and wait patiently.
+                    We have very simple steps for you to follow to redeem your coins and claim huges or gems!
+                    1. Join our discord server.
+                    2. Use our bot to exchange your coins for items.
+                    3. Create a claim ticket and wait patiently.
                 </p>
             </div>
-        </section>
+        </div>
 
-        <section class="contact-area" id="contact">
+        <div class="contact-area" id="contact">
             <div class="text-part">
                 <h1>
                     Support
                 </h1>
                 <p>
-                Discord Server: discord.gg/y326CdgDtM
+                    Discord Server: discord.gg/y326CdgDtM
                 </p>
                 <p>
-                Inquiry/Support email: psxearn.contact@gmail.com
+                    Inquiry/Support email: psxearn.contact@gmail.com
                 </p>
             </div>
-        </section>
-    </BODY>
-    </HTML>
+        </div>
+    </body>
+</html>
