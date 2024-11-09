@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Sign up</title>
 </head>
 <body>
-
+    <form method="POST" action="/register">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <label for="first">First Name:</label>
+        <input type="first" id="first" name="first" required><br><br>
+        <label for="last">Last Name:</label>
+        <input type="last" id="last" name="last" required><br><br>
+        <label for="doc">Document(s):</label>
+        <input type="doc" id="doc" name="doc" required><br><br>
+        <label for="concern">Main Concern:</label>
+        <textarea type="concern" id="concern" name="concern" required></textarea><br><br>
+        <input type="submit" value="login">
+    </form>
 </body>
 </html>
