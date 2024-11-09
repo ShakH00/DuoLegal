@@ -1,90 +1,46 @@
-from flask import Flask, request, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask import Flask, render_template, request, redirect, url_for, session
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+app = Flask('__name__', template_folder='index')
+app.secret_key = 'boi!#@$f23%^$^5u98pb7v9bu(*&*($^)(989540svirfuyvityr'
 
-# Define User/Case model functions
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(80), nullable=False)
-    is_lawyer = db.Column(db.Boolean, default=False)
+#temporary boolean
+logged = False
+#home directory stuff
+@app.route('/')
+def home():
+    if logged == True:
+        return render_template('home.html', username=session['email'])
+    else:
+        return render_template('index.html')
 
-class Case(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    user = db.relationship('User', backref=db.backref('cases', lazy=True))
-
-# Initialize the database itself
-with app.app_context():
-    db.create_all()
-
-# Getting inputs from user
-@app.route('/signup', methods=['POST'])
-def signup():
-    data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
-    is_lawyer = data.get('is_lawyer', False)
-
-    # Make sure user exists
-    if User.query.filter_by(username=username).first():
-        return jsonify({"message": "Username already exists"}), 400
-
-    # Create new user account
-    hashed_password = generate_password_hash(password)
-    new_user = User(username=username, password=hashed_password, is_lawyer=is_lawyer)
-    db.session.add(new_user)
-    db.session.commit()
-
-    return jsonify({"message": f"User {username} created successfully!"}), 201
-
-# User login
-@app.route('/login', methods=['POST'])
+@app.route('/login.html', methods=['GET', 'POST'])
 def login():
-    data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
-    user = User.query.filter_by(username=username).first()
+    global logged
+    if request.method == 'POST':
+        username = request.form['email']
+        pwd = request.form['password']
+        logged = True
+        return redirect(url_for('home'))
+    else:
+        return render_template('login.html', error='Invalid email or password!')
 
-    # Verify the password
-    if user and check_password_hash(user.password, password):
-        return jsonify({"message": f"Welcome, {username}!"}), 200
-    return jsonify({"message": "Invalid credentials"}), 401
-
-# Creating the case itself
-@app.route('/create_case', methods=['POST'])
-def create_case():
-    data = request.get_json()
-    title = data.get('title')
-    description = data.get('description')
-    user_id = data.get('user_id')
-
-    new_case = Case(title=title, description=description, user_id=user_id)
-    db.session.add(new_case)
-    db.session.commit()
-
-    return jsonify({"message": f"Case '{title}' created successfully!"}), 201
-
-# Getting the cases
-@app.route('/cases', methods=['GET'])
-def get_cases():
-    cases = Case.query.all()
-    case_list = [{"title": case.title, "description": case.description, "user_id": case.user_id} for case in cases]
-    return jsonify(case_list), 200
-
-# Getting the lawyers
-@app.route('/lawyers', methods=['GET'])
-def get_lawyers():
-    lawyers = User.query.filter_by(is_lawyer=True).all()
-    lawyer_list = [{"username": lawyer.username, "id": lawyer.id} for lawyer in lawyers]
-    return jsonify(lawyer_list), 200
+    #add code to get from mongo db
+        #if user and pwd = user[1]:
+            #session['email'] = user[0]
+            #return redirect(url_for('home'))
+        #else
+            #return render_template('login.html', error='Invalid email or password!')
+    return render_template('login.html')
+@app.route('/register.html', methods=['GET', 'POST'])
+def register():
+    global logged
+    if request.method == 'POST':
+        username = request.form['email']
+        pwd = request.form['password']
+        logged = True
+        #code to add to mongo db
+        return(redirect(url_for('login')))
+    return render_template('register.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
