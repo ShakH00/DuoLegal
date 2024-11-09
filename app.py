@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 
-app = Flask('__name__')
+app = Flask('__name__', template_folder='index')
 app.secret_key = 'boi!#@$f23%^$^5u98pb7v9bu(*&*($^)(989540svirfuyvityr'
 
 #mongodb stuff
@@ -8,10 +8,11 @@ app.secret_key = 'boi!#@$f23%^$^5u98pb7v9bu(*&*($^)(989540svirfuyvityr'
 
 @app.route('/')
 def home():
-    if 'username' in session:
+    if 'email' in session:
         return render_template('home.html', username=session['email'])
     else:
         return render_template('index.html')
+
 
 
 @app.route('/')
