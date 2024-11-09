@@ -2,7 +2,25 @@
     CSS file for styles used in index (main) page
 */
 
-/*NAVBAR*/
+/* Progress scroll */
+.scroll-container {
+    width: 100%;
+    height: 4px;
+    background: #ccc;
+    position: fixed;
+    z-index: 2;
+    top: 70px;
+}
+
+.scroll-progress-bar {
+    height: 4px;
+    background: #a10000;
+    z-index: 2;
+    top: 70px;
+    width: 0;
+}
+
+/* Navigation Bar */
 .navbar {
     position: fixed;
     display: flex;
@@ -21,7 +39,14 @@
     display: flex;
     justify-content: right;
     list-style: none;
-    margin-right: 15%;
+    margin-right: 30px;
+}
+
+.nav-account {
+    margin-right: 10%;
+    display: flex;
+    list-style: none;
+    justify-content: right;
 }
 
 .logo {
@@ -35,7 +60,25 @@
 }
 
 .nav a {
-    margin: 15px;
+    margin: 0;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px 10px 20px;
+    border-radius: 50px;
+}
+
+.nav-account {
+    padding: 10px 0 10px 0;
+    background-color: #5a5a5a;
+    border-radius: 50px;
+}
+
+.nav-login {
+    background-color: #a10000;
+}
+
+.nav-account a {
+    margin: 0;
     color: white;
     text-decoration: none;
     padding: 10px 20px 10px 20px;
@@ -43,8 +86,16 @@
 }
 
 .nav a:hover {
-    background-color: #3a3a3a;
+    background-color: #333333;
 }
+
+.nav-login:hover {
+    background-color: #7e0000;
+}
+
+/*.nav-account a:hover .nav-account {*/
+/*        background-color: #d000ff;*/
+/*}*/
 
 .banner-area {
     position: relative;
@@ -72,7 +123,9 @@
     flex-wrap: wrap;
     flex-direction: row;
     width: 100%;
-    height: 700px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    min-height: 500px;
 }
 
 .text-part {
@@ -80,13 +133,14 @@
     height: 80%;
 }
 
-h1 {
+.text-part h1 {
     font-size: 50px;
 }
 
-p {
+.text-part p {
     font-size: 24px;
     line-height: 50px;
+    padding-left: 30px;
 }
 
 .about-area {
@@ -102,7 +156,46 @@ p {
     background: #fefefe;
 }
 
+/* Back to top button */
+#button {
+    display: inline-block;
+    background-color: #ccc;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s,
+    opacity .5s, visibility .5s;
+    opacity: 0;
+    text-decoration: none;
+    visibility: hidden;
+    transition: all .6s ease;
+}
 
-html {
-    scroll-behavior: smooth;
+#button::after {
+    content: "\f077";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 55px;
+    color: #fff;
+}
+
+#button:hover {
+    cursor: pointer;
+    background-color: #000;
+}
+
+#button:active {
+    background-color: #555;
+}
+
+#button.show {
+    opacity: 1;
+    z-index: 1;
+    visibility: visible;
 }
