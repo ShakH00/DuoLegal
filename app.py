@@ -15,7 +15,7 @@ def home():
 
 
 
-@app.route('/')
+@app.route('/login.html', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['email']
@@ -28,6 +28,15 @@ def login():
             #return render_template('login.html', error='Invalid email or password!')
     return render_template('login.html')
 
+@app.route('/register.html', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['email']
+        pwd = request.form['password']
+
+        #code to add to mongo db
+        return(redirect(url_for('login')))
+    return render_template('register.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
