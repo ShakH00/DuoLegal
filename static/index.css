@@ -38,10 +38,12 @@
     margin: 15px;
     color: white;
     text-decoration: none;
+    padding: 10px 20px 10px 20px;
+    border-radius: 50px;
 }
 
 .nav a:hover {
-    color: red;
+    background-color: #3a3a3a;
 }
 
 .banner-area {
