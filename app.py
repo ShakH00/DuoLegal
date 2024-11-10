@@ -1,11 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+import json
+
+from bson import json_util
+
+import UserMethods
+from UserMethods import user
+import UploadMethods as UP
+
 
 app = Flask('__name__', template_folder='index')
 app.secret_key = 'boi!#@$f23%^$^5u98pb7v9bu(*&*($^)(989540svirfuyvityr'
 
-#temporary boolean
-logged = False
-#home directory stuff
+
 
 @app.route('/')
 def home():
@@ -34,6 +40,9 @@ def register():
     if request.method == 'POST':
         username = request.form.get('email')
         pwd = request.form.get('password')
+        first = request.form.get('first')
+        last = request.form.get('last')
+        location = request.form.get('location')
         # Simulate user registration
         session['email'] = username  # Log the user in after registration
         return redirect(url_for('login'))
