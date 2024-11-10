@@ -64,3 +64,33 @@ def download_user_documents(user_identifier):
             print(f"PDF file saved as {output_path}")
     else:
         print("No documents found for the specified user.")
+
+
+
+def upload_claim(user_identifier, message):
+    # Read and encode the file in Base64 format
+
+    # Prepare the document entry with metadata (optional)
+    document_entry = {
+        "data": message,  # Extracts the filename
+        "user_email": user_identifier
+    }
+
+    # Update user's document array by appending the new document
+    user_collection.update_one(
+        {"email": user_identifier},  # Filter by user identifier (e.g., email)
+        {"$push": {"posts": document_entry}}  # Add document to documents array
+    )
+
+
+def download_user_posts(user_identifier):
+    # Retrieve the user's documents array
+    user = user_collection.find_one({"email": user_identifier}, {"posts": 1})
+    messages = []
+    # Check if the user and their documents exist
+    if user and "posts" in user:
+        for index, document in enumerate(user["posts"], start=1):
+            messages.append(document["data"])
+
+    else:
+        print("No documents found for the specified user.")

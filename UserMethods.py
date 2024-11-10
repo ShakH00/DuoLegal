@@ -27,7 +27,7 @@ user_collection = db['users']
 ###
 
 class user:
-    def __init__(self, name, lastname, email, password,location, concern,documents=None):
+    def __init__(self, name, lastname, email, password,location, concern,documents=None, posts=None):
         self.name = name
         self.lastname = lastname
         self.email = email
@@ -35,6 +35,7 @@ class user:
         self.concern = concern
         self.location = location
         self.documents = documents if documents is not None else []
+        self.posts = posts if posts is not None else []
 
     # Convert user attributes to a dictionary
     def to_dict(self):
@@ -45,7 +46,8 @@ class user:
             "password": self.password,
             "location": self.location,
             "concern": self.concern,
-            "documents": self.documents
+            "documents": self.documents,
+            "posts": self.posts
 
         }
 
@@ -96,8 +98,8 @@ class user:
 def get_all_users():
     # Retrieve all user documents and convert to a list
     users = list(user_collection.find())
-    all_users = get_all_users()
-    return all_users
+    #all_users = get_all_users()
+    return users
 
 
 def get_user_credentials(email):

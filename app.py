@@ -60,29 +60,26 @@ def logout():
 
 @app.route('/claims', methods=['GET', 'POST'])
 def claims():
-    if 'email' in session:
+    if 'email' in session: #need to be logged in to access claims page
         messages = []
         if request.method == 'POST':
             newPost = request.form.get('concern')
-            for x in range(0,10):
-                messages.append(f"text {x}")
             if newPost:
                 messages.append(newPost)
+                UP.upload_claim(session['email'], newPost)
+                return redirect(url_for('claims')) #refresh page so that it updates, adding the new post
         elif request.method == 'GET':
-            #m = UserMethods.get_all_users()
-
-            for x in range(0,10):
-                messages.append(f"text {x}")
-            #for user in m:
-            #    UP.download_user_documents(user.email)
-            #    messages.append(UP.download_user_documents(user.email))
-        return render_template('claims.html', messages=messages)
+            m = UserMethods.get_all_users()
+            for user in m:
+                for post in user["posts"]:
+                    messages.append(post["data"])
+        return render_template('claims.html', messages=messages if messages else "")
     else:
         return render_template('login.html')
 
 @app.route('/account', methods=['GET', 'POST'])
 def account():
-    if 'email' in session:
+    if 'email' in session: #need to be logged in to access account settings
         if request.method == 'POST':
             email = request.form.get('email')
             pwd = request.form.get('password')
