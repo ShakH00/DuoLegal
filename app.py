@@ -226,6 +226,8 @@ def account():
         userName = getUserName()
         if request.method == 'POST':
 
+            #doesn't work properly, needs fixing
+
             #email: Optional[str] = request.form.get('email')
             #user_to_update = {"email" : f"{session['email']}"}
             #update_email = { '$set' :{ 'email' : f'{email}' }}
