@@ -5,6 +5,18 @@
     <title>Claims</title>
 </head>
 <body>
+    <h1>User Claims Processing</h1>
 
+    <ul>
+        <!-- Loop through the messages passed from Flask -->
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    <form method="POST" action="/claims">
+        <label for="concern">Post Concern:</label>
+        <input type="text" id="concern" name="concern" required><br><br>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
