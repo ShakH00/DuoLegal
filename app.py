@@ -78,7 +78,18 @@ def claims():
         #    messages.append(UP.download_user_documents(user.email))
     return render_template('claims.html', messages=messages)
 
+@app.route('/account', methods=['GET', 'POST'])
+def account():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        pwd = request.form.get('password')
+        first = request.form.get('first')
+        last = request.form.get('last')
+        location = request.form.get('location')
+        lawyer = request.form.get("lawyer")
+        bar_num = request.form.get("bar")
 
+    return render_template('account.html')
 
 
 
