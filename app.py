@@ -15,11 +15,18 @@ app = Flask('__name__', template_folder='index')
 app.secret_key = 'boi!#@$f23%^$^5u98pb7v9bu(*&*($^)(989540svirfuyvityr'
 
 
+def getUserName():
+    all_users = UserMethods.get_all_users()
+    userName = ""
+    for user in all_users:
+        if user['email'] == session['email']:
+            userName += f"{user['name']} {user['lastname']}"
+    return userName
 
 @app.route('/')
 def home():
     if 'email' in session:
-        return render_template('home.html', username=session['email'])
+        return render_template('home.html', username=session['email'], userName=getUserName())
     else:
         return render_template('index.html')
 
@@ -90,7 +97,7 @@ def claims():
                         "comments": post.get("comments", [])
                     })
 
-        return render_template('claims.html', messages=messages if messages else [])
+        return render_template('claims.html', messages=messages if messages else [], userName=getUserName())
     else:
         return render_template('login.html')
 
@@ -111,6 +118,7 @@ def add_comment():
 @app.route('/account', methods=['GET', 'POST'])
 def account():
     if 'email' in session: #need to be logged in to access account settings
+        userName = getUserName()
         if request.method == 'POST':
             email = request.form.get('email')
             pwd = request.form.get('password')
@@ -120,7 +128,7 @@ def account():
             lawyer = request.form.get("lawyer")
             bar_num = request.form.get("bar")
 
-        return render_template('account.html')
+        return render_template('account.html', userName=userName)
     else:
         return render_template('login.html')
 

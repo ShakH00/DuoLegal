@@ -21,7 +21,9 @@
                 <li><a href="/aichat">Legal AI</a></li>
             </ul>
             <ul class="nav-account">
-                <li><a href="/account" class="nav-profile">USERNAME HERE</a></li>
+                {% if userName %}
+                <li><a href="/account" class="nav-profile">{{ userName }}</a></li>
+                {% endif %}
                 <li><a href="/logout" class="nav-logout">Logout</a></li>
             </ul>
         </div><br><br><br>
