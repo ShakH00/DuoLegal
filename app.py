@@ -14,7 +14,7 @@ from pymongo import MongoClient
 import UserMethods
 from UserMethods import user
 import UploadMethods as UP
-client = MongoClient("mongodb+srv://saqibmaz:Mongodb%40Modulo48@cluster0.beh24.mongodb.net/?retryWrites=true&w=majority", ssl = True)
+client = MongoClient("mongodb+srv://MrVarmint_gw:5HUInvuir2390@cluster0.6fkb0.mongodb.net/cstuff?retryWrites=true&w=majority")
 db = client['sadsDB']
 user_collection = db['users']
 
@@ -23,7 +23,7 @@ app.secret_key = 'boi!#@$f23%^$^5u98pb7v9bu(*&*($^)(989540svirfuyvityr'
 
 load_dotenv()
 
-api_key = os.getenv("SECRET_1")
+api_key = os.getenv("OPENAI_API_KEY")
 openai.api_key = api_key
 
 
@@ -184,21 +184,47 @@ def add_comment():
         return redirect(url_for('login'))
 
 response = ""
+prompt = ""
 @app.route('/aichat', methods=['GET', 'POST'])
 def aichat():
     if 'email' in session: #need to be logged in to access legal AI advice
 
         if request.method == 'POST':
+            global prompt
             prompt = request.form.get('prompt')  # The content of the prompt
             global response
             response = legalAIResponse(prompt)
             return redirect(url_for('aichat'))  # Refresh page to show the new post
 
         print(response)
-        return render_template('aichat.html', userName=getUserName(), response=response)
+        return render_template('aichat.html', userName=getUserName(), response=response, question=prompt)
     else:
         return redirect(url_for('login'))
 
+@app.route('/findalawyer', methods=['GET', 'POST'])
+def findalawyer():
+    if 'email' in session:
+        if request.method == 'GET':
+            # Retrieve all users in database
+            all_users = UserMethods.get_all_users()
+            all_lawyers =[]
+            # Retrieve all lawyers from all users
+            for user in all_users:
+                if(user['lawyer'] == 'yes'):
+                    all_lawyers.append({
+                        "email": user["email"],
+                        "location": user["location"],
+                        "first": user["name"],
+                        "last": user["lastname"],
+                        "license": user["license"],
+                        "school": user["school"],
+                        "firm": user["firm"],
+                    })
+
+            return render_template('findalawyer.html', messages=all_lawyers if all_lawyers else [], userName=getUserName())
+
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/account', methods=['GET', 'POST'])
 def account():

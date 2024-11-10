@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>DuoLegal | Legal AI Advice</title>
+        <title>DuoLegal | Find a Lawyer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../static/aichat.css">
         <link rel="stylesheet" href="../static/all.css">
@@ -29,19 +29,14 @@
         </div>
 
         <div class="aichat-div">
-            <form method="POST" action="/aichat">
+            <form method="POST" action="/findalawyer">
                 <h1>Disclaimer:</h1>
-                <h2>We cannot guarantee that this AI gives completely solid advice</h2>
+                <h2>Please make sure to check their credentials through the appropiate government websites</h2>
                 <hr>
-                <p>Please enter your question</p>
+
                 {% if response %}
-                <p>{{ question }}</p>
                 <p>{{ response }}</p>
                 {% endif %}
-                <label for="prompt">Question <span class="required">*</span></label><br>
-                <textarea class="msg-box input-msg" id="prompt" name="prompt" placeholder="Is it legal to sell a car without saying it does not work?" required></textarea>
-                <p class="required-text"><span class="required">*</span> indicates a required field</p>
-                <input type="submit" class="submit-button" value="Get Answer">
             </form>
         </div>
     </body>
