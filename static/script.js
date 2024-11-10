@@ -97,3 +97,30 @@ function toggleLawyerFields() {
         lawFirmField.removeAttribute("required");
     }
 }
+
+// CLAIMS:
+// Function to toggle the visibility of the comment form
+function toggleCommentForm(index) {
+    const form = document.getElementById(`comment-form-${index}`);
+    if (form.style.display === "none") {
+        form.style.display = "block";
+    } else {
+        form.style.display = "none";
+    }
+}
+
+// Function to toggle the visibility of the comment section
+function toggleCommentSection(index) {
+    var commentSection = document.getElementById('comment-section-' + index);
+    var addCommentButton = document.getElementById('add-comment-' + index);
+    var cancelButton = document.getElementById('cancel-button-' + index);
+
+    // Toggle display of comment section
+    if (commentSection.style.display === 'none' || commentSection.style.display === '') {
+        commentSection.style.display = 'block';
+        addCommentButton.style.display = 'none';  // Hide Add Comment button
+    } else {
+        commentSection.style.display = 'none';
+        addCommentButton.style.display = 'inline-block';  // Show Add Comment button again
+    }
+}
