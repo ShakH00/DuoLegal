@@ -21,7 +21,6 @@ DuoLegal connects individuals seeking legal help with pro bono and small-case la
     In the run terminal click the link to the localhost
 
 ## Objective
-- ins
+- DuoLegal’s objective is to break down barriers to legal access by providing a platform that connects individuals in need with dedicated pro bono and small-case lawyers. We aim to create a streamlined, accessible, and supportive environment where lawyers can contribute their expertise to underserved communities, making justice attainable for all.
 
 ## Screenshots
-- ins
