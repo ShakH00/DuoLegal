@@ -33,9 +33,9 @@
                 <h1>Disclaimer:</h1>
                 <h2>We cannot guarantee that this AI gives completely solid advice</h2>
                 <hr>
-                <p>Please enter your question</p>
+                <p>Please enter your question</p><br>
                 {% if response %}
-                <p>{{ question }}</p>
+                <p><strong>Question:</strong> {{ question }}</p>
                 <p>{{ response }}</p>
                 {% endif %}
                 <label for="prompt">Question <span class="required">*</span></label><br>
