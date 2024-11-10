@@ -89,7 +89,6 @@ def claims():
             # Retrieve all posts for the logged-in user
             all_users = UserMethods.get_all_users()
             for user in all_users:
-                #messages = UP.download_user_posts(session['email'])
                 for post in user["posts"]:
                     # Each post includes the main message and comments
                     messages.append({
