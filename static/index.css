@@ -93,9 +93,9 @@
     background-color: #7e0000;
 }
 
-/*.nav-account a:hover .nav-account {*/
-/*        background-color: #d000ff;*/
-/*}*/
+.nav-account a:hover .nav-account {
+        background-color: #d000ff;
+}
 
 .banner-area {
     position: relative;
