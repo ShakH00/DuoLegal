@@ -58,6 +58,14 @@ def logout():
     session.pop('email', None)
     return redirect(url_for('home'))
 
+#password reset
+@app.route('/password-reset')
+def passwordreset():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        return redirect(url_for('login'))
+    return render_template('password-reset.html')
+
 @app.route('/claims', methods=['GET', 'POST'])
 def claims():
     if 'email' in session: #need to be logged in to access claims page
@@ -92,6 +100,7 @@ def account():
         return render_template('account.html')
     else:
         return render_template('login.html')
+
 
 
 if __name__ == '__main__':
