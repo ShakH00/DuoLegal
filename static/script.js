@@ -49,6 +49,11 @@ function toggleLawyerFields() {
     var lawyerCheckbox = document.getElementById("lawyer-checkbox");
     var lawyerFields = document.getElementById("lawyer-fields");
 
+    // Select the lawyer-specific input fields
+    var licenseIdField = document.getElementById("license_id");
+    var lawSchoolField = document.getElementById("law_school");
+    var lawFirmField = document.getElementById("law_firm");
+
     if (lawyerCheckbox.checked) {
         lawyerFields.style.display = "block";
         let height = 0;
@@ -66,6 +71,11 @@ function toggleLawyerFields() {
             }
         }, 10);
 
+        // Add 'required' attribute to each lawyer-specific field
+        licenseIdField.setAttribute("required", "true");
+        lawSchoolField.setAttribute("required", "true");
+        lawFirmField.setAttribute("required", "true");
+
     } else {
         let height = lawyerFields.scrollHeight;
 
@@ -73,12 +83,17 @@ function toggleLawyerFields() {
             if (height > 0) {
                 height -= 5;
                 lawyerFields.style.height = height + "px";
-                lawyerFields.style.opacity = (height / lawyerFields.scrollHeight)/10;
+                lawyerFields.style.opacity = (height / lawyerFields.scrollHeight) / 10;
             } else {
                 clearInterval(collapseInterval);
                 lawyerFields.style.height = "0";
                 lawyerFields.style.display = "none";
             }
         }, 10);
+
+        // Remove 'required' attribute from each lawyer-specific field
+        licenseIdField.removeAttribute("required");
+        lawSchoolField.removeAttribute("required");
+        lawFirmField.removeAttribute("required");
     }
 }
