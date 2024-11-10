@@ -73,7 +73,8 @@ def upload_claim(user_identifier, message):
     # Prepare the document entry with metadata (optional)
     document_entry = {
         "data": message,  # Extracts the filename
-        "user_email": user_identifier
+        "user_email": user_identifier,
+        "comments": []
     }
 
     # Update user's document array by appending the new document
@@ -82,15 +83,32 @@ def upload_claim(user_identifier, message):
         {"$push": {"posts": document_entry}}  # Add document to documents array
     )
 
-
 def download_user_posts(user_identifier):
     # Retrieve the user's documents array
     user = user_collection.find_one({"email": user_identifier}, {"posts": 1})
     messages = []
-    # Check if the user and their documents exist
-    if user and "posts" in user:
-        for index, document in enumerate(user["posts"], start=1):
-            messages.append(document["data"])
 
+    # Check if the user and their posts exist
+    if user and "posts" in user:
+        for post in user["posts"]:
+            messages.append({
+                "data": post["data"],
+                "comments": post.get("comments", [])
+            })
     else:
         print("No documents found for the specified user.")
+
+    return messages
+
+def comment_on_post(user_identifier, message, new_comment, commenter_email):
+    # Prepare the comment entry
+    comment_entry = {
+        "comment": new_comment,
+        "commenter": commenter_email
+    }
+
+    # Update the specific post to add the new comment
+    user_collection.update_one(
+        {"email": user_identifier, "posts.data": message},  # Filter by user and message
+        {"$push": {"posts.$.comments": comment_entry}}  # Add the comment to the post's comments array
+    )
