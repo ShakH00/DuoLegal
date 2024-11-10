@@ -72,6 +72,10 @@ def login():
             return render_template('login.html', error='Invalid email or password!')
     return render_template('login.html')
 
+
+def is_valid_numeric_string(s):
+    return s.isdigit() and len(s) == 12
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -89,7 +93,11 @@ def register():
             new_person.insert_doc()
 
         else:
-            new_person = user(first, last, email, pwd, location, conc, "yes", bar_num, school, firm)
+            valid_num = is_valid_numeric_string(bar_num)
+            if valid_num:
+                new_person = user(first, last, email, pwd, location, conc, "yes", bar_num, school, firm)
+            else:
+                return render_template('register.html', error="License ID is invalid.")
             new_person.insert_doc()
         # Simulate user registration
         session['email'] = email  # Log the user in after registration

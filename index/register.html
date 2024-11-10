@@ -46,7 +46,9 @@
                         <label for="law_firm">Law Firm <span class="required">*</span></label><br>
                         <input class="input input-msg" type="text" id="law_firm" name="law_firm" placeholder="Calgary Lawyers">
                     </div>
-
+                    {% if error %}
+                    <p style="color: red;">{{ error }}</p>
+                    {% endif %}
                     <p class="required-text"><span class="required">*</span> indicates a
                         required field</p>
                     <input class="submit-button" type="submit" value="Register">
