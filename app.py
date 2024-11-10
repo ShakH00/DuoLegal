@@ -95,6 +95,7 @@ def register():
         conc = "None"
         exists = False
         all_users = UserMethods.get_all_users()
+        #for loop and if statement used to make sure the email isn't already in use
         for usr in all_users:
             if usr['email'] == email:
                 exists = True
@@ -117,11 +118,13 @@ def register():
             return redirect(url_for('login'))
     return render_template('register.html')
 
+#logout method
 @app.route('/logout')
 def logout():
     session.pop('email', None)
     return redirect(url_for('home'))
 
+#contact form backend
 @app.route('/submit-button', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
@@ -150,18 +153,19 @@ def passwordreset():
         return redirect(url_for('login'))
     return render_template('password-reset.html')
 
+#claims page
 @app.route('/claims', methods=['GET', 'POST'])
 def claims():
     if 'email' in session:  # Need to be logged in to access claims page
         messages = []
-
+        #posting something new
         if request.method == 'POST':
             new_post = request.form.get('concern')
             if new_post:
 
                 UP.upload_claim(session['email'], new_post)
                 return redirect(url_for('claims'))  # Refresh page to show the new post
-
+        #viewing the page in general
         elif request.method == 'GET':
             # Retrieve all posts for the logged-in user
             all_users = UserMethods.get_all_users()
@@ -177,6 +181,7 @@ def claims():
     else:
         return render_template('login.html')
 
+#add comment on a claim post
 @app.route('/add_comment', methods=['POST'])
 def add_comment():
     if 'email' in session:
@@ -196,6 +201,7 @@ def add_comment():
     else:
         return redirect(url_for('login'))
 
+#ai chat backend implementation
 response = ""
 prompt = ""
 @app.route('/aichat', methods=['GET', 'POST'])
@@ -213,7 +219,7 @@ def aichat():
     else:
         return redirect(url_for('login'))
 
-
+#account settings
 @app.route('/account', methods=['GET', 'POST'])
 def account():
     if 'email' in session: #need to be logged in to access account settings
