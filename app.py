@@ -14,6 +14,7 @@ from pymongo import MongoClient
 import UserMethods
 from UserMethods import user
 import UploadMethods as UP
+#mongo db stuff
 client = MongoClient("mongodb+srv://MrVarmint_gw:5HUInvuir2390@cluster0.6fkb0.mongodb.net/cstuff?retryWrites=true&w=majority")
 db = client['sadsDB']
 user_collection = db['users']
@@ -27,6 +28,7 @@ api_key = os.getenv("OPENAI_API_KEY")
 openai.api_key = api_key
 
 
+#helper method to get the username (first and last name) of an account
 def getUserName():
     all_users = UserMethods.get_all_users()
     userName = ""
@@ -35,7 +37,7 @@ def getUserName():
             userName += f"{user['name']} {user['lastname']}"
     return userName
 
-
+#method to use open AI for legal AI advice
 def legalAIResponse(prompt):
     client = OpenAI()
 
@@ -51,13 +53,15 @@ def legalAIResponse(prompt):
     )
     return completion.choices[0].message.content
 
+#home app route
 @app.route('/')
 def home():
-    if 'email' in session:
+    if 'email' in session: #user is logged in, head to home page
         return render_template('home.html', username=session['email'], userName=getUserName())
-    else:
+    else: #user not logged in, use index.html instead
         return render_template('index.html')
 
+#login method
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -72,10 +76,11 @@ def login():
             return render_template('login.html', error='Invalid email or password!')
     return render_template('login.html')
 
-
+#helper function used for ensuring license IDs for lawyers are 12 digit numbers
 def is_valid_numeric_string(s):
     return s.isdigit() and len(s) == 12
 
+#register account
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -88,20 +93,28 @@ def register():
         school = request.form.get('law_school')
         firm = request.form.get('law_firm')
         conc = "None"
-        if bar_num == "" and school == "" and firm == "":
-            new_person = user(first, last, email, pwd, location, conc, "no", bar_num, school, firm)
-            new_person.insert_doc()
-
+        exists = False
+        all_users = UserMethods.get_all_users()
+        for usr in all_users:
+            if usr['email'] == email:
+                exists = True
+        if exists == True:
+            return render_template('register.html', error="Email already in use!")
         else:
-            valid_num = is_valid_numeric_string(bar_num)
-            if valid_num:
-                new_person = user(first, last, email, pwd, location, conc, "yes", bar_num, school, firm)
+            if bar_num == "" and school == "" and firm == "":
+                new_person = user(first, last, email, pwd, location, conc, "no", bar_num, school, firm)
+                new_person.insert_doc()
+
             else:
-                return render_template('register.html', error="License ID is invalid.")
-            new_person.insert_doc()
-        # Simulate user registration
-        session['email'] = email  # Log the user in after registration
-        return redirect(url_for('login'))
+                valid_num = is_valid_numeric_string(bar_num)
+                if valid_num:
+                    new_person = user(first, last, email, pwd, location, conc, "yes", bar_num, school, firm)
+                else:
+                    return render_template('register.html', error="License ID is invalid.")
+                new_person.insert_doc()
+            # Simulate user registration
+            session['email'] = email  # Log the user in after registration
+            return redirect(url_for('login'))
     return render_template('register.html')
 
 @app.route('/logout')
