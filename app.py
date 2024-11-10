@@ -52,6 +52,9 @@ def register():
         first = request.form.get('first')
         last = request.form.get('last')
         location = request.form.get('location')
+        lawyer = request.form.get('lawyer')
+        bar_num = request.form.get('bar')
+        school = request.form.get('school')
         conc = "None"
         new_person = user(first, last, email, pwd, location, conc)
         new_person.insert_doc()
