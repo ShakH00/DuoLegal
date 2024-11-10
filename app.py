@@ -225,29 +225,30 @@ def account():
     if 'email' in session: #need to be logged in to access account settings
         userName = getUserName()
         if request.method == 'POST':
-            email: Optional[str] = request.form.get('email')
-            user_to_update = {"email" : f"{session['email']}"}
-            update_email = { '$set' :{ 'email' : f'{email}' }}
-            result = user_collection.update_one(user_to_update, update_email)
+
+            #email: Optional[str] = request.form.get('email')
+            #user_to_update = {"email" : f"{session['email']}"}
+            #update_email = { '$set' :{ 'email' : f'{email}' }}
+            #result = user_collection.update_one(user_to_update, update_email)
 
 
-            user_to_update = {"email": f"{email}"}
-            pwd = request.form.get('password')
-            update_pwd = {'$set':{'password': f'{pwd}'}}
-            result = user_collection.update_one(user_to_update, update_pwd)
+            #user_to_update = {"email": f"{email}"}
+            #pwd = request.form.get('password')
+            #update_pwd = {'$set':{'password': f'{pwd}'}}
+            #result = user_collection.update_one(user_to_update, update_pwd)
 
-            first = request.form.get('first')
-            update_first = {'$set': {'name': f'{first}'}}
-            result = user_collection.update_one(user_to_update, update_first)
+            #first = request.form.get('first')
+            #update_first = {'$set': {'name': f'{first}'}}
+            #result = user_collection.update_one(user_to_update, update_first)
 
 
-            last = request.form.get('last')
-            update_last = {'$set': {'lastname': f'{last}'}}
-            result = user_collection.update_one(user_to_update, update_last)
+            #last = request.form.get('last')
+            #update_last = {'$set': {'lastname': f'{last}'}}
+            #result = user_collection.update_one(user_to_update, update_last)
 
-            location = request.form.get('location')
-            update_loc = {'$set': {'location': f'{location}'}}
-            result = user_collection.update_one(user_to_update, update_loc)
+            #location = request.form.get('location')
+            #update_loc = {'$set': {'location': f'{location}'}}
+            #result = user_collection.update_one(user_to_update, update_loc)
             session.pop('email', None)
             return redirect(url_for('login'))
 
