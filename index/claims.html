@@ -35,7 +35,7 @@
                         <!-- Display comments for each message -->
                         <ul>
                             {% for comment in message.comments %}
-                                <li><strong>{{ comment.commenter }}:</strong> {{ comment.comment }}</li>
+                                <li><strong>{{ comment.name }}:</strong> {{ comment.comment }}</li>
                             {% endfor %}
                         </ul>
                 <!-- Comment form for each message -->

@@ -102,9 +102,11 @@ def download_user_posts(user_identifier):
 
 def comment_on_post(user_identifier, message, new_comment, commenter_email):
     # Prepare the comment entry
+    commenter_p = user_collection.find_one({"email": commenter_email})
     comment_entry = {
         "comment": new_comment,
-        "commenter": commenter_email
+        "commenter": commenter_email,
+        "name": f"{commenter_p['name']} {commenter_p['lastname']}"
     }
 
     # Update the specific post to add the new comment
