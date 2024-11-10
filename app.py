@@ -74,12 +74,21 @@ def claims():
         if request.method == 'POST':
             new_post = request.form.get('concern')
             if new_post:
+
                 UP.upload_claim(session['email'], new_post)
                 return redirect(url_for('claims'))  # Refresh page to show the new post
 
         elif request.method == 'GET':
             # Retrieve all posts for the logged-in user
-            messages = UP.download_user_posts(session['email'])
+            all_users = UserMethods.get_all_users()
+            for user in all_users:
+                #messages = UP.download_user_posts(session['email'])
+                for post in user["posts"]:
+                    # Each post includes the main message and comments
+                    messages.append({
+                        "data": post["data"],
+                        "comments": post.get("comments", [])
+                    })
 
         return render_template('claims.html', messages=messages if messages else [])
     else:
