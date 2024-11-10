@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>DuoLegal | Legal AI Advice</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../static/password-reset.css">
+        <link rel="stylesheet" href="../static/aichat.css">
         <link rel="stylesheet" href="../static/all.css">
         <link rel="shortcut icon" type="image/png" href="../static/graphics/logo.png">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -12,7 +12,8 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
-    <div class="navbar">
+        <!--NAVBAR-->
+        <div class="navbar">
             <a class="logo" href="/">DuoLegal</a>
             <ul class="nav">
                 <li><a href="/">Home</a></li>
@@ -25,22 +26,22 @@
                 {% endif %}
                 <li><a href="/logout" class="nav-logout">Logout</a></li>
             </ul>
-        </div><br><br><br>
-        <div class="reset-div">
+        </div>
 
-            <form method="POST" action="/aichat">  <!-- Correct the action URL -->
-    <h1>We cannot guarantee that this AI gives completely solid advice</h1>
-    <p>If the account exists, we will email you instructions to reset your password.</p>
-    <p>Please enter the prompt.</p>
-    <hr><br>
-    {% if response %}
-    <p>{{ response }}</p>  <!-- Display the AI response -->
-    {% endif %}
-    <label for="prompt">Prompt: <span class="required">*</span></label><br>
-    <input class="input input-msg" type="text" id="prompt" name="prompt" placeholder="Court Advice" required><br><br>
-    <p class="required-text"><span class="required">*</span> indicates a required field</p>
-    <input type="submit" class="submit-button" value="Get Answer">
-</form>
+        <div class="aichat-div">
+            <form method="POST" action="/aichat">
+                <h1>Disclaimer:</h1>
+                <h2>We cannot guarantee that this AI gives completely solid advice</h2>
+                <hr>
+                <p>Please enter your question</p>
+                {% if response %}
+                <p>{{ response }}</p>
+                {% endif %}
+                <label for="prompt">Question <span class="required">*</span></label><br>
+                <textarea class="msg-box input-msg" id="prompt" name="prompt" placeholder="Is it legal to sell a car without saying it does not work?" required></textarea>
+                <p class="required-text"><span class="required">*</span> indicates a required field</p>
+                <input type="submit" class="submit-button" value="Get Answer">
+            </form>
         </div>
     </body>
 </html>

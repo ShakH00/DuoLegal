@@ -79,14 +79,21 @@
 
 .contact-form-div {
     position: relative;
-    margin: 50px;
+    margin-top: 10px;
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
-    padding: 50px;
+    padding: 30px;
     padding-top: 30px;
     background-color: white;
     max-width: fit-content;
     margin-right: auto;
     margin-left: auto;
+}
+
+.contact-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f4f0ea;
 }
 
 /* Forms */

@@ -6,6 +6,10 @@
 
 body {
     background-color: #f4f0ea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .login {
@@ -30,6 +34,8 @@ body {
 .login-div {
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
     margin: 50px;
+    width: 90%;
+    max-width: 1200px;
 }
 
 @media (min-width: 65em) {
