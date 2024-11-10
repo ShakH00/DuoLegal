@@ -27,13 +27,17 @@ user_collection = db['users']
 ###
 
 class user:
-    def __init__(self, name, lastname, email, password,location, concern,documents=None, posts=None):
+    def __init__(self, name, lastname, email, password,location, concern, lawyer, lic=None, school=None, firm=None, documents=None, posts=None):
         self.name = name
         self.lastname = lastname
         self.email = email
         self.password = self.hash_password(password)
         self.concern = concern
         self.location = location
+        self.lawyer = lawyer
+        self.lic = lic
+        self.school = school if school is not None else None
+        self.firm = firm if firm is not None else None
         self.documents = documents if documents is not None else []
         self.posts = posts if posts is not None else []
 
@@ -47,6 +51,10 @@ class user:
             "password": self.password,
             "location": self.location,
             "concern": self.concern,
+            "lawyer": self.lawyer,
+            "license": self.lic,
+            "school": self.school,
+            "firm": self.firm,
             "documents": self.documents,
             "posts": self.posts
 
