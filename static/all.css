@@ -33,7 +33,7 @@ body {
     display: flex;
     justify-content: right;
     list-style: none;
-    margin-right: 30px;
+    margin-right: 10px;
 }
 
 .nav-account {
@@ -61,18 +61,11 @@ body {
     border-radius: 50px;
 }
 
-.nav-account {
-    padding: 10px 0 10px 0;
-    background-color: #5a5a5a;
-    border-radius: 50px;
-}
-
 .nav-account a {
     margin: 0;
     color: white;
     text-decoration: none;
     padding: 10px 20px 10px 20px;
-    border-radius: 50px;
 }
 
 .nav a:hover {
@@ -81,7 +74,8 @@ body {
 }
 
 /* Conditional navbar buttons depending on page */
-.nav-logout {
+.nav-logout, .nav-login {
+    border-radius: 0 50px 50px 0;
     background-color: #a10000;
 }
 
@@ -90,8 +84,14 @@ body {
     background-color: #810d0d;
 }
 
-.nav-login {
-    background-color: #a10000;
+.nav-register {
+    border-radius: 50px 0 0 50px;
+    background-color: #5a5a5a;
+}
+
+.nav-profile {
+    border-radius: 50px 0 0 50px;
+    background-color: #5a5a5a;
 }
 
 .nav-login:hover {
@@ -99,8 +99,9 @@ body {
     background-color: #810d0d;
 }
 
-.nav-account a:hover .nav-account {
-    background-color: #d000ff;
+.nav-register:hover, .nav-profile:hover {
+    transition: all .6s ease;
+    background-color: #686868;
 }
 
 /* Progress scroll */
