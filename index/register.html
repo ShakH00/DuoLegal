@@ -7,34 +7,14 @@
         <link rel="stylesheet" href="../static/register.css">
         <link rel="stylesheet" href="../static/all.css">
         <link rel="shortcut icon" type="image/png" href="../static/graphics/logo.png">
-        <script>
-            // JavaScript to toggle lawyer-specific fields
-            function toggleLawyerFields() {
-                var lawyerCheckbox = document.getElementById("lawyer-checkbox");
-                var lawyerFields = document.getElementById("lawyer-fields");
-                if (lawyerCheckbox.checked) {
-                    lawyerFields.style.display = "block";  // Show lawyer fields
-                } else {
-                    lawyerFields.style.display = "none";   // Hide lawyer fields
-                }
-            }
-        </script>
     </head>
     <body>
         <div class="register-div">
             <!--LEFT SIDE-->
             <div class="login">
-                <div class="lg-view">
-                    <br><br><br><br><br><br><br><br>
-                    <h1>Welcome to the Registration Portal</h1>
-                    <p>Already have an account?</p>
-                    <button class="login-button"><a href="/login">Login</a></button>
-                </div>
-                <div class="sm-view">
-                    <h1>Welcome to the Registration Portal</h1>
-                    <p>Already have an account?</p>
-                    <button class="login-button"><a href="/login">Login</a></button>
-                </div>
+                <h1>Welcome to the Registration Portal</h1>
+                <p>Already have an account?</p>
+                <a href="/login"><button class="login-button">Login</button></a>
             </div>
 
             <!--RIGHT SIDE-->
@@ -49,31 +29,29 @@
                     <label for="last">Last Name <span class="required">*</span></label><br>
                     <input class="input input-msg" type="last" id="last" name="last" placeholder="Doe" required><br><br>
                     <label for="location">Location <span class="required">*</span></label><br>
-                    <input class="input input-msg" type="location" id="location" name="location" placeholder="Calgary, Canada" required>
-                    <label class="lawyer">I'm a Lawyer
-                      <input type="checkbox" id="lawyer-checkbox" onclick="toggleLawyerFields()">
-                      <span class="required"></span>
-                    </label>
+                    <input class="input input-msg" type="location" id="location" name="location" placeholder="Calgary, Canada" required><br><br>
+                    <label for="lawyer-checkbox">I am a Lawyer</label>
+                    <input type="checkbox" id="lawyer-checkbox" onclick="toggleLawyerFields()">
+
 
                     <!-- Additional Lawyer Fields, initially hidden -->
                     <div id="lawyer-fields" style="display:none;">
+                        <br>
+                        <label for="license_id">License ID <span style="font-size: 12px">(12 digits)</span> <span class="required">*</span></label><br>
+                        <input class="input input-msg" type="text" id="license_id" name="license_id" placeholder="012345678910"><br><br>
 
-                        <label for="license_id">License ID</label><br>
-                        <input class="input input-msg" type="text" id="license_id" name="license_id" placeholder="License ID"><br><br>
+                        <label for="law_school">Alma Mater <span class="required">*</span></label><br>
+                        <input class="input input-msg" type="text" id="law_school" name="law_school" placeholder="Harvard"><br><br>
 
-                        <label for="law_school">Law School</label><br>
-                        <input class="input input-msg" type="text" id="law_school" name="law_school" placeholder="Law School Name"><br><br>
-
-                        <label for="law_firm">Law Firm</label><br>
-                        <input class="input input-msg" type="text" id="law_firm" name="law_firm" placeholder="Law Firm Name"><br><br>
+                        <label for="law_firm">Law Firm <span class="required">*</span></label><br>
+                        <input class="input input-msg" type="text" id="law_firm" name="law_firm" placeholder="Calgary Lawyers">
                     </div>
-
                     <p class="required-text"><span class="required">*</span> indicates a
                         required field</p>
                     <input class="submit-button" type="submit" value="Register">
                 </form>
-
             </div>
         </div>
+        <script src="../static/script.js"></script>
     </body>
 </html>

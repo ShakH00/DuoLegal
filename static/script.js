@@ -39,7 +39,46 @@ btn.addEventListener('click', function (e) {
 
 window.addEventListener('scroll', buttonFunction);
 
-// Year
+// Footer year
 const y = new Date();
 let year = y.getFullYear();
 document.getElementById("year-footer").innerHTML = `Copyright &copy; ${year} DuoLegal. All Rights Reserved`;
+
+// JavaScript to toggle lawyer-specific fields
+function toggleLawyerFields() {
+    var lawyerCheckbox = document.getElementById("lawyer-checkbox");
+    var lawyerFields = document.getElementById("lawyer-fields");
+
+    if (lawyerCheckbox.checked) {
+        lawyerFields.style.display = "block";
+        let height = 0;
+        const maxHeight = lawyerFields.scrollHeight;
+
+        // Animate the expansion
+        const expandInterval = setInterval(function() {
+            if (height < maxHeight) {
+                height += 5;
+                lawyerFields.style.height = height + "px";
+                lawyerFields.style.opacity = height / maxHeight;
+            } else {
+                clearInterval(expandInterval);
+                lawyerFields.style.height = "auto";
+            }
+        }, 10);
+
+    } else {
+        let height = lawyerFields.scrollHeight;
+
+        const collapseInterval = setInterval(function() {
+            if (height > 0) {
+                height -= 5;
+                lawyerFields.style.height = height + "px";
+                lawyerFields.style.opacity = (height / lawyerFields.scrollHeight)/10;
+            } else {
+                clearInterval(collapseInterval);
+                lawyerFields.style.height = "0";
+                lawyerFields.style.display = "none";
+            }
+        }, 10);
+    }
+}

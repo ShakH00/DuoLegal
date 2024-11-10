@@ -23,19 +23,13 @@ body {
     padding: 30px;
     align-items: center;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .login-div {
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
     margin: 50px;
-}
-
-.lg-view {
-    display: none;
-}
-
-.sm-view {
-    display: inline-block;
 }
 
 @media (min-width: 65em) {
@@ -62,14 +56,6 @@ body {
         box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
         margin: 50px;
     }
-
-    .lg-view {
-        display: inline-block;
-    }
-
-    .sm-view {
-        display: none;
-    }
 }
 
 .signup-button {
@@ -79,6 +65,7 @@ body {
     transition: all .4s ease;
     border-radius: 50px;
     text-align: center;
+    color: white;
     font-size: 17px;
     width: 150px;
 }
