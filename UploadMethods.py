@@ -4,7 +4,7 @@ import re
 
 
 #mongo db stuff
-client = MongoClient("mongodb+srv://saqibmaz:Mongodb%40Modulo48@cluster0.beh24.mongodb.net/?retryWrites=true&w=majority")
+client = MongoClient("mongodb+srv://saqibmaz:Mongodb%40Modulo48@cluster0.beh24.mongodb.net/?retryWrites=true&w=majority", ssl = True)
 db = client['sadsDB']
 user_collection = db['users']
 

@@ -5,6 +5,25 @@
     <title>Account Settings</title>
 </head>
 <body>
-
+    <form method="POST" action="/account">
+        <label for="email">Change Email:</label>
+        <input type="text" id="email" name="email" required><br><br>
+        <label for="password">Change Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <label for="first">Change First Name:</label>
+        <input type="first" id="first" name="first" required><br><br>
+        <label for="last">Change Last Name:</label>
+        <input type="last" id="last" name="last" required><br><br>
+        <label for="location">Change Location:</label>
+        <input type="location" id="location" name="location" required><br><br>
+        <label for="lawyer" id="lawyer" name="lawyer" required<br><br>
+        <label class="container">I'm a lawyer
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+        <label for="bar">Bar ID Number:</label>
+        <input type="bar" id="bar" name="bar" ><br><br>
+        <input type="submit" value="Apply settings">
+    </form>
 </body>
 </html>

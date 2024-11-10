@@ -2,7 +2,7 @@ import json
 import bcrypt
 from bson import json_util
 from pymongo import MongoClient
-client = MongoClient("mongodb+srv://saqibmaz:Mongodb%40Modulo48@cluster0.beh24.mongodb.net/?retryWrites=true&w=majority")
+client = MongoClient("mongodb+srv://saqibmaz:Mongodb%40Modulo48@cluster0.beh24.mongodb.net/?retryWrites=true&w=majority", ssl = True)
 db = client['sadsDB']
 user_collection = db['users']
 ###
@@ -57,7 +57,7 @@ class user:
     def insert_doc(self):
         # Use the dictionary representation for insertion
         insert_doc = user_collection.insert_one(self.to_dict())
-        return f"Success, ID: {insert_doc.inserted_id}"
+        print(f"Success, ID: {insert_doc.inserted_id}")
 
     def delete_doc(self):
         delete_doc = user_collection.delete_one(self.to_dict())
