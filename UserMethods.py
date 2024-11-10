@@ -2,7 +2,8 @@ import json
 import bcrypt
 from bson import json_util
 from pymongo import MongoClient
-client = MongoClient("mongodb+srv://saqibmaz:Mongodb%40Modulo48@cluster0.beh24.mongodb.net/?retryWrites=true&w=majority", ssl = True)
+#client = MongoClient("mongodb+srv://saqibmaz:Mongodb%40Modulo48@cluster0.beh24.mongodb.net/?retryWrites=true&w=majority", ssl = True)
+client = MongoClient("mongodb+srv://MrVarmint_gw:5HUInvuir2390@cluster0.6fkb0.mongodb.net/cstuff?retryWrites=true&w=majority")
 db = client['sadsDB']
 user_collection = db['users']
 ###
