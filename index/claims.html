@@ -33,37 +33,53 @@
             <form method="POST" action="/claims">
                 <label for="concern">Post Concern <span class="required">*</span></label><br>
                 <textarea class="msg-box input-msg" id="concern" name="concern" placeholder="Enter concern..."
-                          required></textarea><br><br>
+                          required></textarea><br>
                 <button class="submit-button" type="submit">Submit Concern</button>
             </form><br>
             <ul>
-                <!-- Loop through the messages passed from Flask -->
                 {% for message in messages %}
-                <li>
-                    <p>{{ message.data }}</p>
-                    <!-- Display comments for each message -->
-                    <ul>
-                        {% for comment in message.comments %}
-                        <li><strong>{{ comment.name }}:</strong> {{ comment.comment }}</li>
-                        {% endfor %}
-                    </ul>
-                    <!-- Comment form for each message -->
-                    <form method="POST" action="/add_comment">
-                        <input type="hidden" name="message_data" value="{{ message.data }}">
-                        <button type="button" class="add-comment" id="add-comment-{{ loop.index }}" onclick="toggleCommentSection({{ loop.index }})">➕ Add comment</button>
-                        <div id="comment-section-{{ loop.index }}" style="display: none;">
-                            <br>
-                            <div style="position: relative;">
-                                <textarea class="msg-box input-msg" id="comment-{{ loop.index }}" name="comment" placeholder="Add comment" required></textarea><br>
-                                <button type="button" class="cancel-button" id="cancel-button-{{ loop.index }}" onclick="toggleCommentSection({{ loop.index }})">Cancel</button>
-                                <button class="post-button" type="submit">Post Comment</button>
-                            </div>
-                        </div>
-                    </form>
+                <li class="message-item">
+                    <p class="concern-header" onclick="toggleAccordion({{ loop.index }})">
+                        {{ message.data }}
+                    </p>
+                    <!-- Display comments for each message in an accordion-style section -->
+                    <div id="accordion-section-{{ loop.index }}" class="accordion-content" style="display: none;">
+                        <ul>
+                            {% if message.comments %}
+                            <strong>Comments:</strong>
+                            {% for comment in message.comments %}
+                            <li><strong>{{ comment.name }}:</strong> {{ comment.comment }}</li>
+                            {% endfor %}
+                            {% else %}
+                            <li><strong>No comments! Be the first to comment on this post!</strong></li>
+                            {% endif %}
+
+                        </ul>
+                        <!-- Comment form for each message -->
+                        <form method="POST" action="/add_comment">
+                            <input type="hidden" name="message_data" value="{{ message.data }}"><br>
+                            <textarea class="msg-box input-msg" name="comment" placeholder="Add comment" required></textarea><br><br>
+                            <button class="post-button" type="submit">Post Comment</button>
+                        </form>
+                    </div>
                 </li>
                 {% endfor %}
             </ul>
         </div>
+
+        <!--FOOTER-->
+        <div class="footer">
+            <ul class="nav-footer">
+                <li><a href="/">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="/claims">Claims</a></li>
+                <li><a href="/aichat">Legal AI</a></li>
+            </ul>
+            <p id="year-footer">Copyright © 2024 DuoLegal. All Rights Reserved</p>
+        </div>
+
         <script src="../static/script.js"></script>
     </body>
 </html>

@@ -99,28 +99,22 @@ function toggleLawyerFields() {
 }
 
 // CLAIMS:
-// Function to toggle the visibility of the comment form
-function toggleCommentForm(index) {
-    const form = document.getElementById(`comment-form-${index}`);
-    if (form.style.display === "none") {
-        form.style.display = "block";
-    } else {
-        form.style.display = "none";
-    }
-}
+// Function to toggle the accordion effect
+function toggleAccordion(index) {
+    const content = document.getElementById(`accordion-section-${index}`);
 
-// Function to toggle the visibility of the comment section
-function toggleCommentSection(index) {
-    var commentSection = document.getElementById('comment-section-' + index);
-    var addCommentButton = document.getElementById('add-comment-' + index);
-    var cancelButton = document.getElementById('cancel-button-' + index);
+    // Close all other sections
+    const allSections = document.querySelectorAll('.accordion-content');
+    allSections.forEach(section => {
+        if (section !== content) {
+            section.style.display = 'none';
+        }
+    });
 
-    // Toggle display of comment section
-    if (commentSection.style.display === 'none' || commentSection.style.display === '') {
-        commentSection.style.display = 'block';
-        addCommentButton.style.display = 'none';  // Hide Add Comment button
+    // Toggle current section
+    if (content.style.display === "none" || content.style.display === "") {
+        content.style.display = "block";
     } else {
-        commentSection.style.display = 'none';
-        addCommentButton.style.display = 'inline-block';  // Show Add Comment button again
+        content.style.display = "none";
     }
 }
