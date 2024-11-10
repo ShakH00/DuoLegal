@@ -61,7 +61,6 @@ body {
         display: flex;
         box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
         margin: 50px;
-        width: 100%;
     }
 
     .lg-view {
@@ -111,7 +110,6 @@ label {
     max-width: 500px;
     width: 65vw;
     background-color: #f4f4f4;
-
 }
 
 .input-msg:hover {

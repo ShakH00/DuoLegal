@@ -1,3 +1,7 @@
+/**
+ *  Scripts for all pages
+ */
+
 // Scroll progress bar (top)
 window.onscroll = function () {
     buttonFunction();

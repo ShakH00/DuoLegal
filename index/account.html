@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>DuoLegal | Account Settings</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../static/claims.css">
+        <link rel="stylesheet" href="../static/account.css">
         <link rel="stylesheet" href="../static/all.css">
         <link rel="shortcut icon" type="image/png" href="../static/graphics/logo.png">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -18,33 +18,37 @@
             <ul class="nav">
                 <li><a href="/">Home</a></li>
                 <li><a href="/claims">Claims</a></li>
+                <li><a href="/aichat">Legal AI</a></li>
             </ul>
             <ul class="nav-account">
                 <li><a href="/account" class="nav-profile">USERNAME HERE</a></li>
                 <li><a href="/logout" class="nav-logout">Logout</a></li>
             </ul>
         </div>
+
         <div class="account-div">
             <form method="POST" action="/account">
-                <label for="email">Change Email:</label>
-                <input type="text" id="email" name="email" required><br><br>
-                <label for="password">Change Password:</label>
-                <input type="password" id="password" name="password" required><br><br>
-                <label for="first">Change First Name:</label>
-                <input type="first" id="first" name="first" required><br><br>
-                <label for="last">Change Last Name:</label>
-                <input type="last" id="last" name="last" required><br><br>
-                <label for="location">Change Location:</label>
-                <input type="location" id="location" name="location" required><br><br>
-                <label for="lawyer" id="lawyer" name="lawyer" required<br><br>
-                <label class="container">I'm a lawyer
-                  <input type="checkbox">
-                  <span class="checkmark"></span>
-                </label>
-                <label for="bar">Bar ID Number:</label>
-                <input type="text" id="bar" name="bar" ><br><br>
-                <input type="submit" value="Apply settings">
+                <h1>Account Settings</h1>
+                <label for="email">Change Email:</label><br>
+                <input type="text" id="email" name="email" class="input input-msg" placeholder="John.Doe@mail.com" required><br><br>
+                <label for="password">Change Password:</label><br>
+                <input type="password" id="password" name="password" class="input input-msg" placeholder="New Password" required><br><br>
+                <label for="first">Change First Name:</label><br>
+                <input type="first" id="first" name="first" class="input input-msg" placeholder="John" required><br><br>
+                <label for="last">Change Last Name:</label><br>
+                <input type="last" id="last" name="last" class="input input-msg" placeholder="Doe" required><br><br>
+                <label for="location">Change Location:</label><br>
+                <input type="location" id="location" name="location" class="input input-msg" placeholder="Calgary, Canada" required><br><br>
+                <input type="submit" value="Apply settings" class="submit-button">
             </form>
         </div>
     </body>
 </html>
+
+<!--
+                <label for="lawyer">I am a lawyer</label>
+                <input type="checkbox" id="lawyer" name="remember" value="yes"><br><br>
+                <label for="bar">Bar ID Number:</label><br>
+                <input type="text" id="bar" name="bar" ><br><br>
+
+-->
