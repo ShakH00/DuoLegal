@@ -68,22 +68,36 @@ def passwordreset():
 
 @app.route('/claims', methods=['GET', 'POST'])
 def claims():
-    if 'email' in session: #need to be logged in to access claims page
+    if 'email' in session:  # Need to be logged in to access claims page
         messages = []
+
         if request.method == 'POST':
-            newPost = request.form.get('concern')
-            if newPost:
-                messages.append(newPost)
-                UP.upload_claim(session['email'], newPost)
-                return redirect(url_for('claims')) #refresh page so that it updates, adding the new post
+            new_post = request.form.get('concern')
+            if new_post:
+                UP.upload_claim(session['email'], new_post)
+                return redirect(url_for('claims'))  # Refresh page to show the new post
+
         elif request.method == 'GET':
-            m = UserMethods.get_all_users()
-            for user in m:
-                for post in user["posts"]:
-                    messages.append(post["data"])
-        return render_template('claims.html', messages=messages if messages else "")
+            # Retrieve all posts for the logged-in user
+            messages = UP.download_user_posts(session['email'])
+
+        return render_template('claims.html', messages=messages if messages else [])
     else:
         return render_template('login.html')
+
+@app.route('/add_comment', methods=['POST'])
+def add_comment():
+    if 'email' in session:
+        message_data = request.form.get('message_data')  # The content of the message to identify it
+        comment = request.form.get('comment')
+        commenter_email = session['email']  # The email of the logged-in user
+
+        # Add the comment to the specified post
+        UP.comment_on_post(session['email'], message_data, comment, commenter_email)
+
+        return redirect(url_for('claims'))
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/account', methods=['GET', 'POST'])
 def account():

@@ -29,7 +29,22 @@
             <ul>
                 <!-- Loop through the messages passed from Flask -->
                 {% for message in messages %}
-                    <li>{{ message }}</li>
+                    <li>
+                <p>{{ message.data }}</p>
+                        <!-- Display comments for each message -->
+                        <ul>
+                            {% for comment in message.comments %}
+                                <li><strong>{{ comment.commenter }}:</strong> {{ comment.comment }}</li>
+                            {% endfor %}
+                        </ul>
+                <!-- Comment form for each message -->
+                <form method="POST" action="/add_comment">
+                    <input type="hidden" name="message_data" value="{{ message.data }}">
+                    <label for="comment-{{ loop.index }}">Your Comment:</label>
+                    <input type="text" id="comment-{{ loop.index }}" name="comment" required>
+                    <button type="submit">Post Comment</button>
+                </form>
+            </li>
                 {% endfor %}
             </ul>
             <form method="POST" action="/claims">
@@ -37,5 +52,17 @@
                 <input type="text" id="concern" name="concern" required><br><br>
                 <button type="submit">Submit</button>
             </form>
+
+             <script>
+                // Function to toggle the visibility of the comment form
+                function toggleCommentForm(index) {
+                    const form = document.getElementById(`comment-form-${index}`);
+                    if (form.style.display === "none") {
+                        form.style.display = "block";
+                    } else {
+                        form.style.display = "none";
+                    }
+                }
+            </script>
     </body>
 </html>

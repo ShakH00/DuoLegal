@@ -37,6 +37,7 @@ class user:
         self.documents = documents if documents is not None else []
         self.posts = posts if posts is not None else []
 
+
     # Convert user attributes to a dictionary
     def to_dict(self):
         return {
