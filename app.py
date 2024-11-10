@@ -1,17 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import json
-
-from bson import json_util
-
-import UserMethods
-from UserMethods import user
-import UploadMethods as UP
-
 
 app = Flask('__name__', template_folder='index')
 app.secret_key = 'boi!#@$f23%^$^5u98pb7v9bu(*&*($^)(989540svirfuyvityr'
 
-
+#temporary boolean
+logged = False
+#home directory stuff
 
 @app.route('/')
 def home():
@@ -26,9 +20,9 @@ def login():
     if request.method == 'POST':
         username = request.form.get('email')
         pwd = request.form.get('password')
-        email, password = UserMethods.get_user_credentials(username)
+
         # Simulated login check (replace with actual database verification)
-        if user.verify_password(password, pwd):  # Simulate successful login
+        if username and pwd:  # Simulate successful login
             session['email'] = username
             return redirect(url_for('home'))
         else:
@@ -38,16 +32,10 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        email = request.form.get('email')
+        username = request.form.get('email')
         pwd = request.form.get('password')
-        first = request.form.get('first')
-        last = request.form.get('last')
-        location = request.form.get('location')
-        conc = None
-        new_person = user(first, last, email, pwd, location, conc)
-        new_person.insert_doc()
         # Simulate user registration
-        session['email'] = email  # Log the user in after registration
+        session['email'] = username  # Log the user in after registration
         return redirect(url_for('login'))
     return render_template('register.html')
 

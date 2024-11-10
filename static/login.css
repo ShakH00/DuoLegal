@@ -126,8 +126,8 @@ label {
     color: black;
     border: 2px solid #a10000;
     height: 50px;
-    max-width: 520px;
-    width: 67vw;
+    max-width: 300px;
+    width: 28vw;
     text-align: center;
     text-decoration: none;
     font-size: 17px;
@@ -139,6 +139,27 @@ label {
     color: white;
     cursor: pointer;
     background-color: #a10000;
+}
+
+.forgot-button {
+    background-color: #a10000;
+    color: white;
+    border: 2px solid #a10000;
+    height: 50px;
+    max-width: 200px;
+    min-width: 150px;
+    width: 15vw;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    transition: all .4s ease;
+    border-radius: 50px;
+}
+
+.forgot-button:hover {
+    color: black;
+    cursor: pointer;
+    background-color: transparent;
 }
 
 

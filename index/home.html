@@ -3,29 +3,77 @@
     <head>
         <meta charset="UTF-8">
         <title>DuoLegal</title>
-        <link rel="stylesheet" href="../static/index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/home.css">
         <link rel="stylesheet" href="../static/all.css">
         <link rel="shortcut icon" type="image/png" href="../static/graphics/logo.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
 
     <body>
         {% if username %}
+
+        <!-- Back to top button -->
+        <a id="button"></a>
+
         <!--NAVBAR-->
         <div class="navbar">
             <a class="logo" href="#">DuoLegal</a>
             <ul class="nav">
-                <li><a href="#main">Home</a></li>
-                <li><a href="claims.html">Claims</a></li>
-                <li><a href="/logout">Logout</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="/claims">Claims</a></li>
+            </ul>
+            <ul class="nav-account">
+                <li><a href="/account" class="nav-profile">USERNAME HERE</a></li>
+                <li><a href="/logout" class="nav-logout">Logout</a></li>
             </ul>
         </div>
 
-        <div class="banner-area" id="main">
-            <img src="../graphics/default.jpeg" class="banner-img" alt="">
-            <div class="banner-text">HOME PAGE</div>
+        <!--SCROLL PROGRESS-->
+        <div class="scroll-container">
+            <div class="scroll-progress-bar" id="myBar"></div>
         </div>
+
+        <div class="banner-area" id="main">
+            <img src="../static/graphics/default2.jpg" class="banner-img" alt="">
+            <div class="banner-text">INSERT A TAG LINE</div>
+        </div>
+
+        <div class="about-area" id="about">
+            <div class="text-part">
+                <h1>About DuoLegal</h1>
+                <p>
+                    DuoLegal is a new and transformative platform designed to connect individuals in need of legal representation with dedicated pro bono and small-case lawyers.
+                    Our mission is simple, yet revolutionary: to break down the barriers to legal support, ensuring access to justice for everyone, regardless of their financial means.
+                    With DuoLegal, users will opt to create detailed case listings outlining their needs, and lawyers showcase their expertise, making it easier than ever
+                    for clients and attorneys to find the perfect match. Whether you’re a lawyer ready to make a difference or an individual seeking justice,
+                    DuoLegal empowers both sides to connect and collaborate effectively. Join us in reshaping the landscape of accessible legal support, and to make
+                    the justice system more efficient than ever.
+                </p>
+            </div>
+        </div>
+
+        <div class="services-area" id="services">
+            <div class="text-part">
+                <h1>Our Services</h1>
+                <p>At DuoLegal, we connect lawyers with individuals in need, streamline case matching, and offer a platform that empowers pro bono efforts nationwide.</p>
+            </div>
+        </div>
+
+        <div class="contact-area" id="contact">
+            <div class="text-part">
+                <h1>Support</h1>
+                <p>For inquiries, please email us at support@duolegal.com</p>
+            </div>
+        </div>
+        <script src="../static/script.js"></script>
+
         {% else %}
-            <p>You are not logged in.</p>
+        <p>You are not logged in.</p>
         {% endif %}
     </body>
 </html>
