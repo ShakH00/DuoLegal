@@ -26,9 +26,9 @@ def login():
     if request.method == 'POST':
         username = request.form.get('email')
         pwd = request.form.get('password')
-
+        email, password = UserMethods.get_user_credentials(username)
         # Simulated login check (replace with actual database verification)
-        if username and pwd:  # Simulate successful login
+        if user.verify_password(password, pwd):  # Simulate successful login
             session['email'] = username
             return redirect(url_for('home'))
         else:
@@ -38,13 +38,16 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        username = request.form.get('email')
+        email = request.form.get('email')
         pwd = request.form.get('password')
         first = request.form.get('first')
         last = request.form.get('last')
         location = request.form.get('location')
+        conc = None
+        new_person = user(first, last, email, pwd, location, conc)
+        new_person.insert_doc()
         # Simulate user registration
-        session['email'] = username  # Log the user in after registration
+        session['email'] = email  # Log the user in after registration
         return redirect(url_for('login'))
     return render_template('register.html')
 
