@@ -28,16 +28,18 @@
             <!--RIGHT SIDE-->
             <div class="signup">
                 <form method="POST" action="/register">
-                    <label for="email">Email:</label><br>
+                    <label for="email">Email <span class="required">*</span></label><br>
                     <input class="input input-msg" type="email" id="email" name="email" placeholder="John.Doe@mail.com" required><br><br>
-                    <label for="password">Password:</label><br>
+                    <label for="password">Password <span class="required">*</span></label><br>
                     <input class="input input-msg" type="password" id="password" name="password" placeholder="Password" required><br><br>
-                    <label for="first">First Name:</label><br>
+                    <label for="first">First Name <span class="required">*</span></label><br>
                     <input class="input input-msg" type="first" id="first" name="first" placeholder="John" required><br><br>
-                    <label for="last">Last Name:</label><br>
+                    <label for="last">Last Name <span class="required">*</span></label><br>
                     <input class="input input-msg" type="last" id="last" name="last" placeholder="Doe" required><br><br>
-                    <label for="location">Location:</label><br>
-                    <input class="input input-msg" type="location" id="location" name="location" placeholder="Calgary, Canada" required><br><br>
+                    <label for="location">Location <span class="required">*</span></label><br>
+                    <input class="input input-msg" type="location" id="location" name="location" placeholder="Calgary, Canada" required>
+                    <p class="required-text"><span class="required">*</span> indicates a
+                        required field</p>
                     <input class="submit-button" type="submit" value="Register">
                 </form>
             </div>

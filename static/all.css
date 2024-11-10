@@ -165,3 +165,56 @@ body {
     z-index: 1;
     visibility: visible;
 }
+
+/* Footers */
+.footer {
+    text-align: center;
+    box-shadow: -1px -1px 4px 0 rgba(0, 0, 0, .1);
+    background-color: #262626;
+    color: white;
+    padding: 20px;
+    padding-bottom: 1px;
+}
+
+.nav-footer {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.nav-footer a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer p {
+    color: #a8a8a8;
+    font-size: 12px;
+    text-align: left;
+}
+
+.nav-footer a {
+    margin: 0;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px 10px 20px;
+    border-radius: 50px;
+}
+
+.nav-footer a:hover {
+    transition: all .6s ease;
+    background-color: #313131;
+}
+
+/* Forms */
+.required {
+    color: #dc3545;
+    font-size: 18px;
+}
+
+.required-text {
+    font-size: 13px;
+}

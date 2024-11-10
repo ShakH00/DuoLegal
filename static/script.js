@@ -38,3 +38,8 @@ btn.addEventListener('click', function (e) {
 });
 
 window.addEventListener('scroll', buttonFunction);
+
+// Year
+const y = new Date();
+let year = y.getFullYear();
+document.getElementById("year-footer").innerHTML = `Copyright &copy; ${year} DuoLegal. All Rights Reserved`;

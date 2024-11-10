@@ -14,10 +14,12 @@
             <div class="login">
                 <form method="POST" action="/login">
                     <h1>Login</h1>
-                    <label for="email">Email:</label><br>
+                    <label for="email">Email <span class="required">*</span></label><br>
                     <input class="input input-msg" type="email" id="email" name="email" placeholder="John.Doe@mail.com" required><br><br>
-                    <label for="password">Password:</label><br>
-                    <input class="input input-msg" type="password" id="password" name="password" placeholder="Password" required><br><br>
+                    <label for="password">Password <span class="required">*</span></label><br>
+                    <input class="input input-msg" type="password" id="password" name="password" placeholder="Password" required>
+                    <p class="required-text"><span class="required">*</span> indicates a
+                        required field</p>
                     {% if error %}
                     <p style="color: red;">{{ error }}</p>
                     {% endif %}

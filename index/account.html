@@ -29,16 +29,18 @@
         <div class="account-div">
             <form method="POST" action="/account">
                 <h1>Account Settings</h1>
-                <label for="email">Change Email:</label><br>
+                <label for="email">Update Email <span class="required">*</span></label><br>
                 <input type="text" id="email" name="email" class="input input-msg" placeholder="John.Doe@mail.com" required><br><br>
-                <label for="password">Change Password:</label><br>
+                <label for="password">Update Password <span class="required">*</span></label><br>
                 <input type="password" id="password" name="password" class="input input-msg" placeholder="New Password" required><br><br>
-                <label for="first">Change First Name:</label><br>
+                <label for="first">Update First Name <span class="required">*</span></label><br>
                 <input type="first" id="first" name="first" class="input input-msg" placeholder="John" required><br><br>
-                <label for="last">Change Last Name:</label><br>
+                <label for="last">Update Last Name <span class="required">*</span></label><br>
                 <input type="last" id="last" name="last" class="input input-msg" placeholder="Doe" required><br><br>
-                <label for="location">Change Location:</label><br>
-                <input type="location" id="location" name="location" class="input input-msg" placeholder="Calgary, Canada" required><br><br>
+                <label for="location">Update Location <span class="required">*</span></label><br>
+                <input type="location" id="location" name="location" class="input input-msg" placeholder="Calgary, Canada" required>
+                <p class="required-text"><span class="required">*</span> indicates a
+                    required field</p>
                 <input type="submit" value="Apply settings" class="submit-button">
             </form>
         </div>
