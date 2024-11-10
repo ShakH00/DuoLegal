@@ -1,5 +1,13 @@
+from typing import Optional
+
+import openai
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
+
+from flask.cli import load_dotenv
+from openai import OpenAI
+#from dotenv import load_dotenv
+import os
 
 from bson import json_util
 from pymongo import MongoClient
@@ -14,6 +22,11 @@ user_collection = db['users']
 app = Flask('__name__', template_folder='index')
 app.secret_key = 'boi!#@$f23%^$^5u98pb7v9bu(*&*($^)(989540svirfuyvityr'
 
+load_dotenv()
+
+api_key = os.getenv("SECRET_1")
+openai.api_key = api_key
+
 
 def getUserName():
     all_users = UserMethods.get_all_users()
@@ -22,6 +35,22 @@ def getUserName():
         if user['email'] == session['email']:
             userName += f"{user['name']} {user['lastname']}"
     return userName
+
+
+def legalAIResponse(prompt):
+    client = OpenAI()
+
+    completion = client.chat.completions.create(
+
+        model="gpt-4o-mini",
+        messages=[
+
+            {"role": "system", "content": "You are a helpful legal assistant."},
+            {"role": "user", "content": prompt}
+
+        ]
+    )
+    return completion.choices[0].message.content
 
 @app.route('/')
 def home():
@@ -52,13 +81,17 @@ def register():
         first = request.form.get('first')
         last = request.form.get('last')
         location = request.form.get('location')
-        lawyer = request.form.getlist('lawyer-checkbox')
         bar_num = request.form.get('license_id')
         school = request.form.get('law_school')
         firm = request.form.get('law_firm')
         conc = "None"
-        new_person = user(first, last, email, pwd, location, conc, lawyer, bar_num, school, firm)
-        new_person.insert_doc()
+        if bar_num == "" and school == "" and firm == "":
+            new_person = user(first, last, email, pwd, location, conc, "no", bar_num, school, firm)
+            new_person.insert_doc()
+
+        else:
+            new_person = user(first, last, email, pwd, location, conc, "yes", bar_num, school, firm)
+            new_person.insert_doc()
         # Simulate user registration
         session['email'] = email  # Log the user in after registration
         return redirect(url_for('login'))
@@ -123,13 +156,34 @@ def account():
     if 'email' in session: #need to be logged in to access account settings
         userName = getUserName()
         if request.method == 'POST':
-            email = request.form.get('email')
+            email: Optional[str] = request.form.get('email')
+            user_to_update = {"email" : f"{session['email']}"}
+            update_email = { '$set' :{ 'email' : f'{email}' }}
+            result = user_collection.update_one(user_to_update, update_email)
+
+
+            user_to_update = {"email": f"{email}"}
             pwd = request.form.get('password')
+            update_pwd = {'$set':{'password': f'{pwd}'}}
+            result = user_collection.update_one(user_to_update, update_pwd)
+
             first = request.form.get('first')
+            update_first = {'$set': {'name': f'{first}'}}
+            result = user_collection.update_one(user_to_update, update_first)
+
+
             last = request.form.get('last')
+            update_last = {'$set': {'lastname': f'{last}'}}
+            result = user_collection.update_one(user_to_update, update_last)
+
             location = request.form.get('location')
-            lawyer = request.form.get("lawyer")
-            bar_num = request.form.get("bar")
+            update_loc = {'$set': {'location': f'{location}'}}
+            result = user_collection.update_one(user_to_update, update_loc)
+            session.pop('email', None)
+            return redirect(url_for('login'))
+
+
+
 
         return render_template('account.html', userName=userName)
     else:
