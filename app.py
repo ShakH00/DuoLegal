@@ -19,7 +19,6 @@ app.secret_key = 'boi!#@$f23%^$^5u98pb7v9bu(*&*($^)(989540svirfuyvityr'
 @app.route('/')
 def home():
     if 'email' in session:
-        print("in session")
         return render_template('home.html', username=session['email'])
     else:
         return render_template('index.html')
@@ -61,36 +60,41 @@ def logout():
 
 @app.route('/claims', methods=['GET', 'POST'])
 def claims():
-    messages = []
-    if request.method == 'POST':
-        newPost = request.form.get('concern')
-        for x in range(0,10):
-            messages.append(f"text {x}")
-        if newPost:
-            messages.append(newPost)
-    elif request.method == 'GET':
-        #m = UserMethods.get_all_users()
+    if 'email' in session:
+        messages = []
+        if request.method == 'POST':
+            newPost = request.form.get('concern')
+            for x in range(0,10):
+                messages.append(f"text {x}")
+            if newPost:
+                messages.append(newPost)
+        elif request.method == 'GET':
+            #m = UserMethods.get_all_users()
 
-        for x in range(0,10):
-            messages.append(f"text {x}")
-        #for user in m:
-        #    UP.download_user_documents(user.email)
-        #    messages.append(UP.download_user_documents(user.email))
-    return render_template('claims.html', messages=messages)
+            for x in range(0,10):
+                messages.append(f"text {x}")
+            #for user in m:
+            #    UP.download_user_documents(user.email)
+            #    messages.append(UP.download_user_documents(user.email))
+        return render_template('claims.html', messages=messages)
+    else:
+        return render_template('login.html')
 
 @app.route('/account', methods=['GET', 'POST'])
 def account():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        pwd = request.form.get('password')
-        first = request.form.get('first')
-        last = request.form.get('last')
-        location = request.form.get('location')
-        lawyer = request.form.get("lawyer")
-        bar_num = request.form.get("bar")
+    if 'email' in session:
+        if request.method == 'POST':
+            email = request.form.get('email')
+            pwd = request.form.get('password')
+            first = request.form.get('first')
+            last = request.form.get('last')
+            location = request.form.get('location')
+            lawyer = request.form.get("lawyer")
+            bar_num = request.form.get("bar")
 
-    return render_template('account.html')
-
+        return render_template('account.html')
+    else:
+        return render_template('login.html')
 
 
 if __name__ == '__main__':
