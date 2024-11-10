@@ -4,9 +4,8 @@ import openai
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
 
-from flask.cli import load_dotenv
 from openai import OpenAI
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 import os
 
 from bson import json_util
@@ -65,7 +64,7 @@ def login():
         username = request.form.get('email')
         pwd = request.form.get('password')
         email, password = UserMethods.get_user_credentials(username)
-        #Simulated login check (replace with actual database verification)
+        #verify password
         if user.verify_password(password, pwd):  # Simulate successful login
             session['email'] = username
             return redirect(url_for('home'))
@@ -143,13 +142,35 @@ def add_comment():
         message_data = request.form.get('message_data')  # The content of the message to identify it
         comment = request.form.get('comment')
         commenter_email = session['email']  # The email of the logged-in user
-
+        original_poster = ""
+        all_users = UserMethods.get_all_users()
+        for user in all_users:
+            for post in user["posts"]:
+                if post['data'] == message_data:
+                    original_poster = user['email']
         # Add the comment to the specified post
-        UP.comment_on_post(session['email'], message_data, comment, commenter_email)
+        UP.comment_on_post(original_poster, message_data, comment, commenter_email)
 
         return redirect(url_for('claims'))
     else:
         return redirect(url_for('login'))
+
+response = ""
+@app.route('/aichat', methods=['GET', 'POST'])
+def aichat():
+    if 'email' in session: #need to be logged in to access legal AI advice
+
+        if request.method == 'POST':
+            prompt = request.form.get('prompt')  # The content of the prompt
+            global response
+            response = legalAIResponse(prompt)
+            return redirect(url_for('aichat'))  # Refresh page to show the new post
+
+        print(response)
+        return render_template('aichat.html', userName=getUserName(), response=response)
+    else:
+        return redirect(url_for('login'))
+
 
 @app.route('/account', methods=['GET', 'POST'])
 def account():
