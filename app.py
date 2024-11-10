@@ -101,6 +101,26 @@ def logout():
     session.pop('email', None)
     return redirect(url_for('home'))
 
+@app.route('/submit-button', methods=['GET', 'POST'])
+def contact():
+    if request.method == 'POST':
+        # You can retrieve form data using request.form
+        email = request.form.get('email')
+        name = request.form.get('name')
+        location = request.form.get('location')
+        subject = request.form.get('subject')
+        message = request.form.get('message')
+
+        # Process the form data (e.g., save it to a database or send an email)
+
+        if 'email' in session:
+            return render_template('home.html', username=session['email'], userName=getUserName(), show_popup=True)
+        else:
+            return render_template('index.html', show_popup=True)
+
+        # If the request method is GET, simply render the form
+    return render_template('index.html')
+
 #password reset
 @app.route('/password-reset')
 def passwordreset():

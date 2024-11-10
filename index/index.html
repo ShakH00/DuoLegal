@@ -65,12 +65,13 @@
         </div>
 
         <div class="contact-area" id="contact">
+
             <div>
                 <div class="text-part">
                     <h1>Support</h1>
                     <p>For inquiries, please contact us at <a href="mailto:support@duolegal.com">our support e-mail</a> or fill out the form below.</p>
                 </div>
-                <form class="contact-form-div">
+                <form class="contact-form-div" action="/submit-button" method="post">
                     <label for="email">Email <span class="required">*</span></label><br>
                     <input class="input input-msg" type="email" id="email" name="email" placeholder="John.Doe@mail.com" required><br><br>
                     <label for="name">Full Name <span class="required">*</span></label><br>
@@ -83,6 +84,19 @@
                     <textarea class="msg-box input-msg"  id="message" name="message" placeholder="Your message" required></textarea>
                     <p class="required-text"><span class="required">*</span> indicates a
                         required field</p>
+                    <script>
+                        // Function to show the popup message
+                        function showSuccessPopup() {
+                            alert("Contact request has been sent. You will be contacted shortly.");
+                        }
+                    </script>
+                    {% if show_popup %}
+                    <script>
+                        // Call the function to show the popup
+                        showSuccessPopup();
+
+                    </script>
+                    {% endif %}
                     <input class="submit-button" type="submit" value="Send message">
                 </form>
             </div>
