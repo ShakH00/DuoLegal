@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+body {
+    background-color: #f4f0ea;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 30px;
+}
+
+.signup {
+    text-align: center;
+    background-image: linear-gradient(#810d0d, #a10000);
+    color: white;
+    padding: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-div {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
+    margin: 50px;
+}
+
+.lg-view {
+    display: none;
+}
+
+.sm-view {
+    display: inline-block;
+}
+
+@media (min-width: 65em) {
+    .login {
+        background-color: white;
+        padding: 50px;
+        padding-top: 30px;
+        display: flex;
+    }
+
+    .signup {
+        width: 100%;
+        background-image: linear-gradient(#810d0d, #a10000);
+        color: white;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .login-div {
+        overflow: hidden;
+        display: flex;
+        box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
+        margin: 50px;
+    }
+
+    .lg-view {
+        display: inline-block;
+    }
+
+    .sm-view {
+        display: none;
+    }
+}
+
+.signup-button {
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    height: 50px;
+    transition: all .4s ease;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 17px;
+    width: 150px;
+}
+
+.signup-button a {
+    color: white;
+    text-decoration: none;
+}
+
+.signup-button:hover {
+    color: black;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+
+label {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.input {
+    height: 39px;
+    border: none;
+    border-radius: 50px;
+    padding-left: 10px;
+    font-size: 15px;
+    max-width: 500px;
+    width: 65vw;
+    background-color: #f4f4f4;
+
+}
+
+.input-msg:hover {
+    border: none;
+}
+
+.input:focus,
+.msg-box:focus {
+    outline: none;
+}
+
+.input::placeholder,
+.msg-box::placeholder {
+    color: #bfbfbf;
+}
+
+.submit-button {
+    background-color: transparent;
+    color: black;
+    border: 2px solid #a10000;
+    height: 50px;
+    max-width: 520px;
+    width: 67vw;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    transition: all .4s ease;
+    border-radius: 50px;
+}
+
+.submit-button:hover {
+    color: white;
+    cursor: pointer;
+    background-color: #a10000;
+}
+
+
+

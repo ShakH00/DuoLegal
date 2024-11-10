@@ -86,11 +86,13 @@
 }
 
 .nav a:hover {
-    background-color: #333333;
+    transition: all .6s ease;
+    background-color: #313131;
 }
 
 .nav-login:hover {
-    background-color: #7e0000;
+    transition: all .6s ease;
+    background-color: #810d0d;
 }
 
 .nav-account a:hover .nav-account {
@@ -100,7 +102,8 @@
 .banner-area {
     position: relative;
     width: 100%;
-    height: 60vh;
+    top: -20px;
+    height: 63vh;
 }
 
 .banner-img {
@@ -111,7 +114,7 @@
     color: white;
     font-size: 50px;
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 35%;
 }
 
@@ -144,7 +147,7 @@
 }
 
 .about-area {
-    background: #fefefe;
+    background: #f4f0ea;
 }
 
 .services-area {
@@ -153,7 +156,7 @@
 }
 
 .contact-area {
-    background: #fefefe;
+    background: #f4f0ea;
 }
 
 /* Back to top button */
