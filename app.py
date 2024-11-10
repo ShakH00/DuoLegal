@@ -1,5 +1,9 @@
+import openai
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
+from openai import OpenAI
+from dotenv import load_dotenv
+import os
 
 from bson import json_util
 from pymongo import MongoClient
@@ -14,6 +18,11 @@ user_collection = db['users']
 app = Flask('__name__', template_folder='index')
 app.secret_key = 'boi!#@$f23%^$^5u98pb7v9bu(*&*($^)(989540svirfuyvityr'
 
+load_dotenv()
+
+api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = api_key
+
 
 def getUserName():
     all_users = UserMethods.get_all_users()
@@ -22,6 +31,22 @@ def getUserName():
         if user['email'] == session['email']:
             userName += f"{user['name']} {user['lastname']}"
     return userName
+
+
+def legalAIResponse(prompt):
+    client = OpenAI()
+
+    completion = client.chat.completions.create(
+
+        model="gpt-4o-mini",
+        messages=[
+
+            {"role": "system", "content": "You are a helpful legal assistant."},
+            {"role": "user", "content": prompt}
+
+        ]
+    )
+    return completion.choices[0].message.content
 
 @app.route('/')
 def home():
