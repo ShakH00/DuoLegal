@@ -6,14 +6,12 @@
 
 body {
     background-color: #f4f0ea;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
-.reset-div {
+.aichat-div {
+    top: 75px;
     position: relative;
+    margin: 50px;
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
     padding: 50px;
     padding-top: 30px;
@@ -59,8 +57,8 @@ label {
     color: black;
     border: 2px solid #a10000;
     height: 50px;
-    max-width: 580px;
-    width: 54vw;
+    max-width: 500px;
+    width: 24vw;
     text-align: center;
     text-decoration: none;
     font-size: 17px;
@@ -72,4 +70,18 @@ label {
     color: white;
     cursor: pointer;
     background-color: #a10000;
+}
+
+.msg-box {
+    resize: vertical;
+    min-height: 100px;
+    max-height: 250px;
+    border: none;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    font-size: 15px;
+    max-width: 500px;
+    width: 65vw;
+    background-color: #f4f4f4;
 }
