@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Account Settings</title>
-</head>
-<body>
-    <form method="POST" action="/account">
-        <label for="email">Change Email:</label>
-        <input type="text" id="email" name="email" required><br><br>
-        <label for="password">Change Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-        <label for="first">Change First Name:</label>
-        <input type="first" id="first" name="first" required><br><br>
-        <label for="last">Change Last Name:</label>
-        <input type="last" id="last" name="last" required><br><br>
-        <label for="location">Change Location:</label>
-        <input type="location" id="location" name="location" required><br><br>
-        <label for="lawyer" id="lawyer" name="lawyer" required<br><br>
-        <label class="container">I'm a lawyer
-          <input type="checkbox">
-          <span class="checkmark"></span>
-        </label>
-        <label for="bar">Bar ID Number:</label>
-        <input type="bar" id="bar" name="bar" ><br><br>
-        <input type="submit" value="Apply settings">
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>DuoLegal | Account Settings</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/claims.css">
+        <link rel="stylesheet" href="../static/all.css">
+        <link rel="shortcut icon" type="image/png" href="../static/graphics/logo.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <!--NAVBAR-->
+        <div class="navbar">
+            <a class="logo" href="/">DuoLegal</a>
+            <ul class="nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/claims">Claims</a></li>
+            </ul>
+            <ul class="nav-account">
+                <li><a href="/account" class="nav-profile">USERNAME HERE</a></li>
+                <li><a href="/logout" class="nav-logout">Logout</a></li>
+            </ul>
+        </div>
+        <div class="account-div">
+            <form method="POST" action="/account">
+                <label for="email">Change Email:</label>
+                <input type="text" id="email" name="email" required><br><br>
+                <label for="password">Change Password:</label>
+                <input type="password" id="password" name="password" required><br><br>
+                <label for="first">Change First Name:</label>
+                <input type="first" id="first" name="first" required><br><br>
+                <label for="last">Change Last Name:</label>
+                <input type="last" id="last" name="last" required><br><br>
+                <label for="location">Change Location:</label>
+                <input type="location" id="location" name="location" required><br><br>
+                <label for="lawyer" id="lawyer" name="lawyer" required<br><br>
+                <label class="container">I'm a lawyer
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label for="bar">Bar ID Number:</label>
+                <input type="text" id="bar" name="bar" ><br><br>
+                <input type="submit" value="Apply settings">
+            </form>
+        </div>
+    </body>
 </html>

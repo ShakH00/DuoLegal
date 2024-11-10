@@ -1,3 +1,7 @@
+/*
+    CSS for registration page
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
 body {
@@ -39,11 +43,12 @@ body {
         background-color: white;
         padding: 50px;
         padding-top: 30px;
+        width: 50%;
         display: flex;
     }
 
     .login {
-        width: 100%;
+        width: 50%;
         background-image: linear-gradient(#810d0d, #a10000);
         color: white;
         align-items: center;
@@ -56,6 +61,7 @@ body {
         display: flex;
         box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
         margin: 50px;
+        width: 100%;
     }
 
     .lg-view {
@@ -76,6 +82,7 @@ body {
     text-align: center;
     font-size: 17px;
     width: 150px;
+    display: inline-block;
 }
 
 .login-button a {

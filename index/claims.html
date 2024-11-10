@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Claims</title>
-</head>
-<body>
-    <h1>User Claims Processing</h1>
+    <head>
+        <meta charset="UTF-8">
+        <title>DuoLegal | Claims</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/claims.css">
+        <link rel="stylesheet" href="../static/all.css">
+        <link rel="shortcut icon" type="image/png" href="../static/graphics/logo.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <!--NAVBAR-->
+        <div class="navbar">
+            <a class="logo" href="/">DuoLegal</a>
+            <ul class="nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/claims">Claims</a></li>
+            </ul>
+            <ul class="nav-account">
+                <li><a href="/account" class="nav-profile">USERNAME HERE</a></li>
+                <li><a href="/logout" class="nav-logout">Logout</a></li>
+            </ul>
+        </div><br><br><br>
 
-    <ul>
-        <!-- Loop through the messages passed from Flask -->
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    <form method="POST" action="/claims">
-        <label for="concern">Post Concern:</label>
-        <input type="text" id="concern" name="concern" required><br><br>
-        <button type="submit">Submit</button>
-    </form>
-</body>
+            <h1>User Claims Processing</h1>
+            <ul>
+                <!-- Loop through the messages passed from Flask -->
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            <form method="POST" action="/claims">
+                <label for="concern">Post Concern:</label>
+                <input type="text" id="concern" name="concern" required><br><br>
+                <button type="submit">Submit</button>
+            </form>
+    </body>
 </html>
