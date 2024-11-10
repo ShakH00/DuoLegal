@@ -196,35 +196,10 @@ def aichat():
             response = legalAIResponse(prompt)
             return redirect(url_for('aichat'))  # Refresh page to show the new post
 
-        print(response)
         return render_template('aichat.html', userName=getUserName(), response=response, question=prompt)
     else:
         return redirect(url_for('login'))
 
-@app.route('/findalawyer', methods=['GET', 'POST'])
-def findalawyer():
-    if 'email' in session:
-        if request.method == 'GET':
-            # Retrieve all users in database
-            all_users = UserMethods.get_all_users()
-            all_lawyers =[]
-            # Retrieve all lawyers from all users
-            for user in all_users:
-                if(user['lawyer'] == 'yes'):
-                    all_lawyers.append({
-                        "email": user["email"],
-                        "location": user["location"],
-                        "first": user["name"],
-                        "last": user["lastname"],
-                        "license": user["license"],
-                        "school": user["school"],
-                        "firm": user["firm"],
-                    })
-
-            return render_template('findalawyer.html', messages=all_lawyers if all_lawyers else [], userName=getUserName())
-
-    else:
-        return redirect(url_for('login'))
 
 @app.route('/account', methods=['GET', 'POST'])
 def account():
