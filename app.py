@@ -15,7 +15,7 @@ import UserMethods
 from UserMethods import user
 import UploadMethods as UP
 #mongo db stuff
-client = MongoClient("mongodb+srv://MrVarmint_gw:5HUInvuir2390@cluster0.6fkb0.mongodb.net/cstuff?retryWrites=true&w=majority")
+client = MongoClient(os.getenv("MONGO_KEY"))
 db = client['sadsDB']
 user_collection = db['users']
 
