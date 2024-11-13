@@ -24,9 +24,20 @@ DuoLegal connects individuals seeking legal help with pro bono and small-case la
     ```bash
    git clone https://github.com/ShakH00/DuoLegal.git
     ```
-2. **Run `app.py`:**
+
+2. **Create a `.env` file**:
+   
+    Enter your info:
+    ```
+    OPENAI_API_KEY=
+    MONGO_KEY=
+    ```
+    
+
+3. **Run `app.py`:**
 
     In the run terminal click the link to the localhost
+
 
 ## Objective
 - DuoLegal’s objective is to break down barriers to legal access by providing a platform that connects individuals in need with dedicated pro bono and small-case lawyers. We aim to create a streamlined, accessible, and supportive environment where lawyers can contribute their expertise to underserved communities, making justice attainable for all.
